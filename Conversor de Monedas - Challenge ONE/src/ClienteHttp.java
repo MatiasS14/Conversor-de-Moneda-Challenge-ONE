@@ -32,7 +32,7 @@ public class ClienteHttp {
 
     public Float getValorMonedaAMonedaB(String moneda, String monedaAConvertir){
 
-        try{//Ver bien los errores a catchear
+        try{
             HttpClient cliente = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url+ "/pair/" +moneda +"/"+ monedaAConvertir)).build();
             HttpResponse<String> response = cliente.send(request, HttpResponse.BodyHandlers.ofString());
