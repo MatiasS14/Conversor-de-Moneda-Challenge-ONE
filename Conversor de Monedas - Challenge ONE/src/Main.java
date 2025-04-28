@@ -29,7 +29,7 @@ public class Main {
             switch (opcion){
                 case 1:
                     //PASA DOLAR A PESOS ARGENTINOS
-                    valorMoneda = cliente.getDolarConvert("ARS");
+                    valorMoneda = cliente.getValorMonedaAMonedaB("USD", "ARS");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
@@ -37,16 +37,16 @@ public class Main {
                             convertirAMoneda(valorConvertir, valorMoneda)+" ARS");
                     break;
                 case 2:
-                    valorMoneda = cliente.getDolarConvert("ARS");
+                    valorMoneda = cliente.getValorMonedaAMonedaB("ARS", "USD");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
                     System.out.println("El valor de "+valorConvertir+" ARS"+" corresponde al valor final de =>>>"+
-                            convertirAMonedaInversa(valorConvertir, valorMoneda)+" USD");
+                            convertirAMoneda(valorConvertir, valorMoneda)+" USD");
                     break;
                 case 3:
 
-                    valorMoneda = cliente.getDolarConvert("BRL");
+                    valorMoneda = cliente.getValorMonedaAMonedaB("USD", "BRL");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
@@ -54,15 +54,15 @@ public class Main {
                             convertirAMoneda(valorConvertir, valorMoneda)+" BRL");
                     break;
                 case 4:
-                    valorMoneda = cliente.getDolarConvert("BRL");
+                    valorMoneda = cliente.getValorMonedaAMonedaB("BRL", "USD");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
                     System.out.println("El valor de "+valorConvertir+" BRL"+" corresponde al valor final de =>>>"+
-                            convertirAMonedaInversa(valorConvertir, valorMoneda)+" USD");
+                            convertirAMoneda(valorConvertir, valorMoneda)+" USD");
                     break;
                 case 5:
-                    valorMoneda = cliente.getDolarConvert("COP");
+                    valorMoneda = cliente.getValorMonedaAMonedaB("USD", "COP");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
@@ -70,12 +70,12 @@ public class Main {
                             convertirAMoneda(valorConvertir, valorMoneda)+" COP");
                     break;
                 case 6:
-                    valorMoneda = cliente.getDolarConvert("COP");
+                    valorMoneda = cliente.getValorMonedaAMonedaB("COP", "USD");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
                     System.out.println("El valor de "+valorConvertir+" COP"+" corresponde al valor final de =>>>"+
-                            convertirAMonedaInversa(valorConvertir, valorMoneda)+" USD");
+                            convertirAMoneda(valorConvertir, valorMoneda)+" USD");
                     break;
                 case 7:
                         salir= true;
@@ -88,7 +88,6 @@ public class Main {
         System.out.println("Muchas gracias, hasta pronto!");
 
     }
-
     public static Float convertirAMoneda(Float valorConvertir, Float valorMoneda) {
         return valorConvertir * valorMoneda;
     }
