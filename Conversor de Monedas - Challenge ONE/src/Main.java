@@ -19,6 +19,8 @@ public class Main {
         Float valorMoneda = 0.0f;
         Float valorConvertir = 0.0f;
 
+        System.out.println(cliente.getDolarConvert("USD"));
+
         System.out.println("Sea bienvenido/a al convertor de monedas =]");
         while (!salir){
             System.out.println(menu);
@@ -27,7 +29,7 @@ public class Main {
             switch (opcion){
                 case 1:
                     //PASA DOLAR A PESOS ARGENTINOS
-                    valorMoneda = cliente.getValorDolarAMoneda("USD", "ARS");
+                    valorMoneda = cliente.getDolarConvert("ARS");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
@@ -35,16 +37,16 @@ public class Main {
                             convertirAMoneda(valorConvertir, valorMoneda)+" ARS");
                     break;
                 case 2:
-                    valorMoneda = cliente.getValorDolarAMoneda("ARS", "USD");
+                    valorMoneda = cliente.getDolarConvert("ARS");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
                     System.out.println("El valor de "+valorConvertir+" ARS"+" corresponde al valor final de =>>>"+
-                            convertirAMoneda(valorConvertir, valorMoneda)+" USD");
+                            convertirAMonedaInversa(valorConvertir, valorMoneda)+" USD");
                     break;
                 case 3:
 
-                    valorMoneda = cliente.getValorDolarAMoneda("USD", "BRL");
+                    valorMoneda = cliente.getDolarConvert("BRL");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
@@ -52,15 +54,15 @@ public class Main {
                             convertirAMoneda(valorConvertir, valorMoneda)+" BRL");
                     break;
                 case 4:
-                    valorMoneda = cliente.getValorDolarAMoneda("BRL", "USD");
+                    valorMoneda = cliente.getDolarConvert("BRL");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
                     System.out.println("El valor de "+valorConvertir+" BRL"+" corresponde al valor final de =>>>"+
-                            convertirAMoneda(valorConvertir, valorMoneda)+" USD");
+                            convertirAMonedaInversa(valorConvertir, valorMoneda)+" USD");
                     break;
                 case 5:
-                    valorMoneda = cliente.getValorDolarAMoneda("USD", "COP");
+                    valorMoneda = cliente.getDolarConvert("COP");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
@@ -68,12 +70,12 @@ public class Main {
                             convertirAMoneda(valorConvertir, valorMoneda)+" COP");
                     break;
                 case 6:
-                    valorMoneda = cliente.getValorDolarAMoneda("COP", "USD");
+                    valorMoneda = cliente.getDolarConvert("COP");
                     teclado = new Scanner(System.in);
                     System.out.println("Ingrese el valor a convertir: ");
                     valorConvertir = teclado.nextFloat();
                     System.out.println("El valor de "+valorConvertir+" COP"+" corresponde al valor final de =>>>"+
-                            convertirAMoneda(valorConvertir, valorMoneda)+" USD");
+                            convertirAMonedaInversa(valorConvertir, valorMoneda)+" USD");
                     break;
                 case 7:
                         salir= true;
@@ -86,8 +88,11 @@ public class Main {
         System.out.println("Muchas gracias, hasta pronto!");
 
     }
+
     public static Float convertirAMoneda(Float valorConvertir, Float valorMoneda) {
         return valorConvertir * valorMoneda;
-
+    }
+    public static Float convertirAMonedaInversa(Float valorConvertir, Float valorMoneda) {
+        return valorConvertir / valorMoneda;
     }
 }
