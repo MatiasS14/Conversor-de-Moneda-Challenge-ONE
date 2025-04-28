@@ -29,4 +29,18 @@ public class ClienteHttp {
             return null;
         }
     }
+
+    public Float getValorMonedaAMonedaB(String moneda, String monedaAConvertir){
+
+        try{//Ver bien los errores a catchear
+            HttpClient cliente = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url+ "/pair/" +moneda +"/"+ monedaAConvertir)).build();
+            HttpResponse<String> response = cliente.send(request, HttpResponse.BodyHandlers.ofString());
+            cliente.close();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Reporte reporte = gson.fromJson(response.body(),Reporte.class);
+            return reporte.conversion_rate();
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());}
+    }
 }
