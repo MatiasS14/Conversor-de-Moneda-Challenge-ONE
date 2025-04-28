@@ -91,7 +91,4 @@ public class Main {
     public static Float convertirAMoneda(Float valorConvertir, Float valorMoneda) {
         return valorConvertir * valorMoneda;
     }
-    public static Float convertirAMonedaInversa(Float valorConvertir, Float valorMoneda) {
-        return valorConvertir / valorMoneda;
-    }
 }
