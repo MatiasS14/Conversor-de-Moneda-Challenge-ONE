@@ -1,6 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Conversor {
+
+    int limiteMovimientos= 3;
+    List<Movimiento> movimientos = new ArrayList<>(this.limiteMovimientos);
+    int cantidadMovimientos= 0;
+
 
     public Float convertirMoneda(String monedaA, String monedaB) {
         ClienteHttp cliente = new ClienteHttp();
@@ -9,15 +16,43 @@ public class Conversor {
         Float valorConvertir = 0.0f;
 
         valorMoneda = cliente.getValorMonedaAMonedaB(monedaA, monedaB);
-        teclado = new Scanner(System.in);
         System.out.println("Ingrese el valor a convertir: ");
         valorConvertir = teclado.nextFloat();
         System.out.println("El valor de "+valorConvertir+ " " + monedaA+" corresponde al valor final de =>>>"+
                 convertirAMoneda(valorConvertir, valorMoneda)+" "+ monedaB);
-        return 3.0f;
+
+        agregarMovimiento(valorConvertir, valorMoneda, monedaB, monedaA);//AGREGAR MOVIMIENTO NUEVO A LA LISTA, PERO VER CUAL LISTA DESPLAZA
+                        //AL MOVIMIENTO MAS VIEJO POR UNO NUEVO DE LA LISTA
+        return convertirAMoneda(valorConvertir, valorMoneda);
     }
 
     private Float convertirAMoneda(Float valorConvertir, Float valorMoneda) {
         return valorConvertir * valorMoneda;
+    }
+
+    public void mostrarUltimasConversiones() {
+        for (int i = 0; i<this.movimientos.size(); i++){
+            System.out.println(movimientos.get(i).toString());
+        }
+    }
+
+    private void agregarMovimiento(Float valor, Float valorConversion, String monedaA, String monedaB){
+        if (this.cantidadMovimientos < 3){
+            agregarOReemplazar(new Movimiento(valor, valorConversion, monedaA, monedaB));
+            this.cantidadMovimientos++;
+        }else {
+            this.movimientos.removeFirst();
+            this.movimientos.addFirst(new Movimiento(valor, valorConversion, monedaA, monedaB));
+            this.cantidadMovimientos=1;
+        }
+    }
+    private void agregarOReemplazar(Movimiento movimiento){
+
+        if (this.movimientos.size() == this.limiteMovimientos){
+            this.movimientos.remove(this.cantidadMovimientos);
+            this.movimientos.add(this.cantidadMovimientos ,movimiento);
+        }else{
+            this.movimientos.add(this.cantidadMovimientos,movimiento);
+        }
     }
 }

@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         boolean salir = false;
-
         String menu = """
                 1) Dolar >>> Peso argentino.
                 2) Peso argentino >>> Dolar.
@@ -11,7 +10,8 @@ public class Main {
                 4) Real brasileño >>> Dolar.
                 5) Dolar >>> Peso colombiano.
                 6) Peso colombiano >>> Dolar.
-                7) Salir.
+                7) Ultimas conversiones,
+                8) Salir.
                 """;
         Conversor conversor = new Conversor();
         Scanner teclado = new Scanner(System.in);
@@ -42,6 +42,9 @@ public class Main {
                     conversor.convertirMoneda("COP", "USD");
                     break;
                 case 7:
+                    conversor.mostrarUltimasConversiones();
+                    break;
+                case 8:
                         salir= true;
                     break;
                 default:
