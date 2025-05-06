@@ -14,16 +14,18 @@ public class Conversor {
         Scanner teclado = new Scanner(System.in);
         Float valorMoneda = 0.0f;
         Float valorConvertir = 0.0f;
+        Float valorConvertido = 0.0f;
 
         valorMoneda = cliente.getValorMonedaAMonedaB(monedaA, monedaB);
         System.out.println("Ingrese el valor a convertir: ");
         valorConvertir = teclado.nextFloat();
+        valorConvertido = convertirAMoneda(valorConvertir, valorMoneda);
         System.out.println("El valor de "+valorConvertir+ " " + monedaA+" corresponde al valor final de =>>>"+
-                convertirAMoneda(valorConvertir, valorMoneda)+" "+ monedaB);
+                valorConvertido+" "+ monedaB);
 
-        agregarMovimiento(valorConvertir, valorMoneda, monedaB, monedaA);//AGREGAR MOVIMIENTO NUEVO A LA LISTA, PERO VER CUAL LISTA DESPLAZA
+        agregarMovimiento(valorConvertir, valorConvertido, valorMoneda, monedaB, monedaA);//AGREGAR MOVIMIENTO NUEVO A LA LISTA, PERO VER CUAL LISTA DESPLAZA
                         //AL MOVIMIENTO MAS VIEJO POR UNO NUEVO DE LA LISTA
-        return convertirAMoneda(valorConvertir, valorMoneda);
+        return valorConvertido;
     }
 
     private Float convertirAMoneda(Float valorConvertir, Float valorMoneda) {
@@ -36,13 +38,13 @@ public class Conversor {
         }
     }
 
-    private void agregarMovimiento(Float valor, Float valorConversion, String monedaA, String monedaB){
-        if (this.cantidadMovimientos < 3){
-            agregarOReemplazar(new Movimiento(valor, valorConversion, monedaA, monedaB));
+    private void agregarMovimiento(Float valor, Float valorConversion, Float valorAConvetir, String monedaA, String monedaB){
+        if (this.cantidadMovimientos < this.limiteMovimientos){
+            agregarOReemplazar(new Movimiento(valor, valorConversion, valorAConvetir, monedaA, monedaB));
             this.cantidadMovimientos++;
         }else {
             this.movimientos.removeFirst();
-            this.movimientos.addFirst(new Movimiento(valor, valorConversion, monedaA, monedaB));
+            this.movimientos.addFirst(new Movimiento(valor, valorConversion, valorAConvetir, monedaA, monedaB));
             this.cantidadMovimientos=1;
         }
     }
