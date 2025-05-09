@@ -7,6 +7,21 @@ public class Conversor {
     int limiteMovimientos= 3;
     List<Movimiento> movimientos = new ArrayList<>(this.limiteMovimientos);
     int cantidadMovimientos= 0;
+    String monedasRelevantes = """
+            ##############################################
+            ######### USD - Dolar Estados Unidos #########
+            ######### EUR - Euro                 #########
+            ######### RUB - Rublo Rusia          #########
+            ######### CNY - Renminbi Chino(Yuan) #########
+            ######### ARS - Peso Argentina       #########
+            ######### UYU - Peso Uruguay         #########
+            ######### COP - Peso Colombia        #########
+            ######### BRL - Real Brasil          #########
+            ######### PEN - Sol Peru             #########
+            ######### MXN - Peso Mexico          #########
+            ######### CLP - Peso Chile           #########
+            ##############################################
+            """;
 
 
     public Float convertirMoneda(String monedaA, String monedaB) {
@@ -23,8 +38,7 @@ public class Conversor {
         System.out.println("El valor de "+valorConvertir+ " " + monedaA+" corresponde al valor final de =>>>"+
                 valorConvertido+" "+ monedaB);
 
-        agregarMovimiento(valorConvertir, valorConvertido, valorMoneda, monedaB, monedaA);//AGREGAR MOVIMIENTO NUEVO A LA LISTA, PERO VER CUAL LISTA DESPLAZA
-                        //AL MOVIMIENTO MAS VIEJO POR UNO NUEVO DE LA LISTA
+        agregarMovimiento(valorConvertir, valorConvertido, valorMoneda, monedaB, monedaA);
         return valorConvertido;
     }
 
@@ -37,6 +51,20 @@ public class Conversor {
             System.out.println(movimientos.get(i).toString());
         }
     }
+
+    public void conbertirMonedasCustom(){
+        Scanner teclado = new Scanner(System.in);
+        String moneda;
+        String monedaFinal;
+        System.out.println("Ingrese el tipo de moneda que quiere convertir:");
+        System.out.println(monedasRelevantes);
+        System.out.println("Para conocer mas codigos de monedas disponibles vea el listado completo");
+        moneda = teclado.nextLine();
+        System.out.println("Ingrese el tipo de moneda a la que quiere convetir:");
+        monedaFinal = teclado.nextLine();
+        convertirMoneda(moneda, monedaFinal);
+
+    };
 
     private void agregarMovimiento(Float valor, Float valorConversion, Float valorAConvetir, String monedaA, String monedaB){
         if (this.cantidadMovimientos < this.limiteMovimientos){

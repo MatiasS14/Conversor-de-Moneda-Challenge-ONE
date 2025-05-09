@@ -10,8 +10,9 @@ public class Main {
                 4) Real brasileño >>> Dolar.
                 5) Dolar >>> Peso colombiano.
                 6) Peso colombiano >>> Dolar.
-                7) Ultimas conversiones,
-                8) Salir.
+                7) Ultimas conversiones.
+                8) Conversion Personalizada.
+                9) Salir.
                 """;
         Conversor conversor = new Conversor();
         Scanner teclado = new Scanner(System.in);
@@ -22,7 +23,6 @@ public class Main {
 
             switch (teclado.nextInt()){
                 case 1:
-                    //PASA DOLAR A PESOS ARGENTINOS
                     conversor.convertirMoneda("USD", "ARS");
                     break;
                 case 2:
@@ -45,6 +45,9 @@ public class Main {
                     conversor.mostrarUltimasConversiones();
                     break;
                 case 8:
+                    conversor.conbertirMonedasCustom();
+                    break;
+                case 9:
                         salir= true;
                     break;
                 default:

@@ -9,10 +9,6 @@ public class Movimiento {
     Date fecha;
 
     public Movimiento(Float valor, Float valorConvertido, Float valorMoneda,String monedaAConvertir, String monedaReferencia) {
-        System.out.println("Creacion de movimiento");
-        System.out.println("Valor a convertir : " + valor);
-        System.out.println("Valor moneda : " + valorMoneda);
-        System.out.println("Valor de conversion: " + valorConvertido);
         this.valorAConvertir = valor;
         this.valorMoneda = valorMoneda;
         this.valorConvertido = valorConvertido;
@@ -22,14 +18,13 @@ public class Movimiento {
     }
 
     @Override
-    public String toString() {
-        String ret ="################################################# \n" +
+    public String toString() { return
+        "################################################# \n" +
                 "Conversion de " + this.monedaReferencia + " a " + this.monedaAConvertir + "\n" +
                 "Valor a convertir : " + this.valorAConvertir +  "\n" +
                 "Valor moneda : " + this.valorMoneda + "\n" +
                 "Valor conversion : " + this.valorConvertido + "\n" +
                 "Fecha : " + this.fecha +
                 "\n #################################################";
-        return ret;
     }
 }
